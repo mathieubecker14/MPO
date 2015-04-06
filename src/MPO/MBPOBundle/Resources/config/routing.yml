@@ -1,0 +1,15 @@
+mpombpo_home:
+    path:     /accueil
+    defaults: { _controller: MPOMBPOBundle:Home:index }
+
+mpombpo_connexion:
+    path:     /connexion
+    defaults: { _controller: MPOMBPOBundle:Home:connexion }
+
+mpombpo_validerconnexion:
+    path:     /validerconnexion
+    defaults: { _controller: MPOMBPOBundle:Home:validerconnexion }
+
+mpombpo_deconnexion:
+    path:     /deconnexion
+    defaults: { _controller: MPOMBPOBundle:Home:deconnexion }

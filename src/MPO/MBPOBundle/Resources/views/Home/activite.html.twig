@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="{{asset('bundles/MBPO/css/bootstrap.min.css')}}">
+
+{%if(message is defined)%}
+    <div class="alert alert-success" role="alert">
+        {{message}}
+    </div>
+{%endif%}
+
+<div>
+    <a href="{{path('mpombpo_deconnexion')}}" title="Se déconnecter">Déconnexion</a>
+</div>

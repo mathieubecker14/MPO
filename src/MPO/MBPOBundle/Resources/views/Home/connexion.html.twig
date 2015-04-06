@@ -1,0 +1,29 @@
+
+<link rel="stylesheet" href="{{asset('bundles/MBPO/css/bootstrap.min.css')}}">
+
+{%if(message is defined)%}
+    <div class="alert alert-danger" role="alert">
+        {{message}}
+    </div>
+{%endif%}
+    <div class="col-md-6 col-md-offset-3">
+        <h2>CONNEXION</h2></br>
+        <form method="POST" action="{{path('mpombpo_validerconnexion')}}">
+            <div class="form-group">
+                <label for="login">LOGIN</label>
+                <input type="text" class="form-control" id="login" name="login">
+            </div>
+            <div class="form-group">
+                <label for="mdp">MOT DE PASSE</label>
+                <input type="password" class="form-control" id="mdp" name="mdp" >
+            </div>
+
+            <div class="col-md-3 col-md-offset-3">
+                <button type="submit" value="Connexion" class="btn btn-lg btn-success">Connexion</button>
+            </div>
+            <div class="col-md-3">
+                <button type="reset" value="Annuler" class="btn btn-lg btn-danger">Annuler</button>
+            </div>
+        </form>
+    </div>
+
