@@ -52,21 +52,20 @@ class HomeController extends Controller
     
     public function addactiviteAction()
     {
+        $pdo = PdoGsb::getPdoGsb();
         $request = $this->get('request');
         $nom = $request->request->get('name');
         $libelle = $request->request->get('libelle');
         $desc = $request->request->get('desc');
         $img = $request->request->get('img');
-        $pdo = PdoGsb::getPdoGsb();
-        $activite = $pdo->addActivite($nom,$libelle,$desc,$img);
-        if(!is_array($activite)){
+        if($nom != "" && $libelle != "" && $desc != "" && $img != ""){
+            $addActivite = $pdo->addActivite($nom,$libelle,$desc,$img);
             return $this->render('MPOMBPOBundle:Home:activite.html.twig',array(
-                'message'=>'Erreur'));
-        
+                'success'=>'Activité ajoutée =).'));
         }
         else {
             return $this->render('MPOMBPOBundle:Home:activite.html.twig',array(
-                'message'=>'Success'));
+                'error'=>'Erreur'));
         }
         
     }

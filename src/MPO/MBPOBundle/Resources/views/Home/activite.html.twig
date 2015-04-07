@@ -9,9 +9,14 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h2>ACTIVITE</h2></br>
-            {%if(message is defined)%}
+            {%if(success is defined)%}
+                <div class="alert alert-success" role="alert">
+                    {{success}}
+                </div>
+            {%endif%}
+            {%if(error is defined)%}
                 <div class="alert alert-danger" role="alert">
-                    {{message}}
+                    {{error}}
                 </div>
             {%endif%}
             <form method="POST" action="{{path('mpombpo_addactivite')}}">

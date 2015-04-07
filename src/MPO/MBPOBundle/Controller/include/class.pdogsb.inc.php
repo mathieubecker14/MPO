@@ -81,8 +81,8 @@ class PdoGsb{
         public function addActivite($nom,$libelle,$desc,$img)
         {
             $res = PdoGsb::$monPdo->prepare
-            ("INSERT INTO ACTIVITE "
-            ."VALUES(:nom, :libelle, :desc, :img) ");
+            ("INSERT INTO ACTIVITE "       
+            ."VALUES('',:nom,:libelle,:desc,:img)");
             $res->bindValue('nom', $nom);
             $res->bindValue('libelle', $libelle);
             $res->bindValue('desc', $desc);
