@@ -47,7 +47,7 @@ class PdoGsb{
 		return PdoGsb::$monPdoGsb;  
 	}
 /**
- * Cette fonction retourne les informations d'un visiteur
+ * Cette fonction retourne les informations d'un user
  
  * @param $login 
  * @param $mdp
@@ -56,7 +56,10 @@ class PdoGsb{
 	public function getUser($login, $mdp)
         {
             $res = PdoGsb::$monPdo->prepare
-            ("SELECT idUser, login FROM USER");
+            ("SELECT idUser, login FROM USER "
+             ."WHERE login = :login AND mdp = :mdp ");
+            $res->bindValue('login', $login);
+            $res->bindValue('mdp', $mdp);
             $res->execute();
             $Ligne = $res->fetch();
             return $Ligne;
@@ -73,6 +76,18 @@ class PdoGsb{
             $res->execute();
             $lesLignes = $res->fetchAll();
             return $lesLignes;
+        }
+        
+        public function addActivite($nom,$libelle,$desc,$img)
+        {
+            $res = PdoGsb::$monPdo->prepare
+            ("INSERT INTO ACTIVITE "
+            ."VALUES(:nom, :libelle, :desc, :img) ");
+            $res->bindValue('nom', $nom);
+            $res->bindValue('libelle', $libelle);
+            $res->bindValue('desc', $desc);
+            $res->bindValue('img', $img);
+            $res->execute();
         }
 }
 ?>

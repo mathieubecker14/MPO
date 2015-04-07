@@ -1,11 +1,43 @@
 <link rel="stylesheet" href="{{asset('bundles/MBPO/css/bootstrap.min.css')}}">
 
-{%if(message is defined)%}
-    <div class="alert alert-success" role="alert">
-        {{message}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-md-offset-9">
+            <a href="{{path('mpombpo_deconnexion')}}" title="Se déconnecter">Déconnexion</a>
+        </div>
     </div>
-{%endif%}
-
-<div>
-    <a href="{{path('mpombpo_deconnexion')}}" title="Se déconnecter">Déconnexion</a>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h2>ACTIVITE</h2></br>
+            {%if(message is defined)%}
+                <div class="alert alert-danger" role="alert">
+                    {{message}}
+                </div>
+            {%endif%}
+            <form method="POST" action="{{path('mpombpo_addactivite')}}">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="libelle">Libelle</label>
+                    <input type="text" class="form-control" id="libelle" name="libelle" >
+                </div>
+                <div class="form-group">
+                    <label for="desc">Description</label>
+                    <textarea class="form-control" id="desc" name="desc" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="img">Image</label>
+                    <input type="text" class="form-control" id="img" name="img" >
+                </div>
+                <div class="col-md-3 col-md-offset-3">
+                    <button type="submit" value="Add" class="btn btn-lg btn-success">Add</button>
+                </div>
+                <div class="col-md-3">
+                    <button type="reset" value="Delete" class="btn btn-lg btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

@@ -13,3 +13,7 @@ mpombpo_validerconnexion:
 mpombpo_deconnexion:
     path:     /deconnexion
     defaults: { _controller: MPOMBPOBundle:Home:deconnexion }
+
+mpombpo_addactivite:
+    path:     /addactivite
+    defaults: { _controller: MPOMBPOBundle:Home:addactivite }

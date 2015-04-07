@@ -24,8 +24,8 @@ class HomeController extends Controller
     
     public function validerconnexionAction()
     {
-        $session =  $this->get('request')->getSession();
-        $request =  $this->get('request');
+        $session = $this->get('request')->getSession();
+        $request = $this->get('request');
         $login = $request->request->get('login');
         $mdp = $request->request->get('mdp');
         $pdo = PdoGsb::getPdoGsb();
@@ -36,8 +36,7 @@ class HomeController extends Controller
         
         }
         else {
-            return $this->render('MPOMBPOBundle:Home:activite.html.twig',array(
-                'message'=>'Connecté'));
+            return $this->render('MPOMBPOBundle:Home:activite.html.twig');
         }
         
     }
@@ -46,7 +45,30 @@ class HomeController extends Controller
     {
         $session = $this->get('request')->getSession();
         $session->clear();
-        return $this->render('MPOMBPOBundle:Home:index.html.twig');
+        $pdo = PdoGsb::getPdoGsb();
+        $lesActivites=$pdo->AffActivite();
+        return $this->render('MPOMBPOBundle:Home:index.html.twig',array('listeActivites'=>$lesActivites));
+    }
+    
+    public function addactiviteAction()
+    {
+        $request = $this->get('request');
+        $nom = $request->request->get('name');
+        $libelle = $request->request->get('libelle');
+        $desc = $request->request->get('desc');
+        $img = $request->request->get('img');
+        $pdo = PdoGsb::getPdoGsb();
+        $activite = $pdo->addActivite($nom,$libelle,$desc,$img);
+        if(!is_array($activite)){
+            return $this->render('MPOMBPOBundle:Home:activite.html.twig',array(
+                'message'=>'Erreur'));
+        
+        }
+        else {
+            return $this->render('MPOMBPOBundle:Home:activite.html.twig',array(
+                'message'=>'Success'));
+        }
+        
     }
     
 }
